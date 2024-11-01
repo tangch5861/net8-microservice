@@ -1,0 +1,50 @@
+{
+  "ReverseProxy": {
+    "Routes": [
+      {
+        "RouteId": "auth",
+        "ClusterId": "authCluster",
+        "MatchCondition": {
+          "Path": "/auth/{*rest}"
+        }
+      },
+      {
+        "RouteId": "todo",
+        "ClusterId": "todoCluster",
+        "MatchCondition": {
+          "Path": "/todos/{*rest}"
+        }
+      },
+      {
+        "RouteId": "notification",
+        "ClusterId": "notificationCluster",
+        "MatchCondition": {
+          "Path": "/send-email/{*rest}"
+        }
+      }
+    ],
+    "Clusters": {
+      "authCluster": {
+        "Destinations": {
+          "authService": {
+            "Address": "http://localhost:5001/" // AuthService URL
+          }
+        }
+      },
+      "todoCluster": {
+        "Destinations": {
+          "todoService": {
+            "Address": "http://localhost:5002/" // TodoService URL
+          }
+        }
+      },
+      "notificationCluster": {
+        "Destinations": {
+          "notificationService": {
+            "Address": "http://localhost:5003/" // NotificationService URL
+          }
+        }
+      }
+    }
+  }
+}

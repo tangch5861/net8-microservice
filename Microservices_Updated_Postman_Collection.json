@@ -1,0 +1,367 @@
+{
+    "info": {
+        "name": "Microservices Postman Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "AuthService",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\": \"testuser\", \"password\": \"password123\"}"
+                        },
+                        "url": {
+                            "raw": "{{auth_base_url}}/auth/login",
+                            "host": [
+                                "{{auth_base_url}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Register User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\": \"newuser\", \"password\": \"password123\", \"email\": \"newuser@example.com\"}"
+                        },
+                        "url": {
+                            "raw": "{{auth_base_url}}/auth/register",
+                            "host": [
+                                "{{auth_base_url}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Roles",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{auth_base_url}}/auth/roles",
+                            "host": [
+                                "{{auth_base_url}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "roles"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Assign Role to User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"userId\": \"user-id-placeholder\", \"role\": \"Admin\"}"
+                        },
+                        "url": {
+                            "raw": "{{auth_base_url}}/auth/assign-role",
+                            "host": [
+                                "{{auth_base_url}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "assign-role"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "UserProfileService",
+            "item": [
+                {
+                    "name": "Get All User Profiles",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{user_profile_base_url}}/userprofiles",
+                            "host": [
+                                "{{user_profile_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Profile by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{user_profile_base_url}}/userprofiles/:id",
+                            "host": [
+                                "{{user_profile_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "user-id-placeholder"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create User Profile",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\": \"John Doe\", \"address\": \"123 Main St\", \"email\": \"john.doe@example.com\", \"phone\": \"123-456-7890\"}"
+                        },
+                        "url": {
+                            "raw": "{{user_profile_base_url}}/userprofiles",
+                            "host": [
+                                "{{user_profile_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update User Profile",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\": \"Jane Doe\", \"address\": \"456 Main St\", \"email\": \"jane.doe@example.com\", \"phone\": \"987-654-3210\"}"
+                        },
+                        "url": {
+                            "raw": "{{user_profile_base_url}}/userprofiles/:id",
+                            "host": [
+                                "{{user_profile_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "user-id-placeholder"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete User Profile",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{user_profile_base_url}}/userprofiles/:id",
+                            "host": [
+                                "{{user_profile_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "user-id-placeholder"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "GatewayService",
+            "item": [
+                {
+                    "name": "Get All User Profiles (via Gateway)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{gateway_base_url}}/userprofiles",
+                            "host": [
+                                "{{gateway_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Profile by ID (via Gateway)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{gateway_base_url}}/userprofiles/:id",
+                            "host": [
+                                "{{gateway_base_url}}"
+                            ],
+                            "path": [
+                                "userprofiles",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "user-id-placeholder"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "auth_base_url",
+            "value": "http://localhost:5001",
+            "type": "string"
+        },
+        {
+            "key": "user_profile_base_url",
+            "value": "http://localhost:5007",
+            "type": "string"
+        },
+        {
+            "key": "auth_token",
+            "value": "",
+            "type": "string",
+            "description": "JWT token obtained from AuthService login"
+        },
+        {
+            "key": "gateway_base_url",
+            "value": "http://localhost:5000",
+            "type": "string",
+            "description": "Base URL for the Gateway Service"
+        }
+    ]
+}
